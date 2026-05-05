@@ -21,6 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "pages/*": ["./src/pages/*"],
+      "store/*": ["./src/store/*"],
+      "utils/*": ["./src/utils/*"],
+      "types/*": ["./src/types/*"],
+      "features/*": ["./src/features/*"],
       "components/*": ["./src/components/*"]
     }
   },

@@ -1,12 +1,16 @@
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-type LoginProps = {
-  handleLogin: () => void;
-};
+import { login } from 'features/auth/authSlice';
 
-const Login = ({ handleLogin }: LoginProps) => {
+const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const handleLogin = () => {
+    dispatch(login());
+    navigate('/dashboard');
+  };
   return (
     <div className='hero bg-base-200 min-h-screen'>
       <div className='hero-content flex-col lg:flex-row-reverse'>
@@ -38,7 +42,10 @@ const Login = ({ handleLogin }: LoginProps) => {
                   Forgot password?
                 </button>
               </div>
-              <button className='btn btn-neutral mt-4' onClick={handleLogin}>
+              <button
+                className='btn btn-neutral mt-4'
+                onClick={() => handleLogin()}
+              >
                 Login
               </button>
             </fieldset>

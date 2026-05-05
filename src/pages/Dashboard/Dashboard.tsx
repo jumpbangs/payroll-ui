@@ -1,7 +1,13 @@
-import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+
+import { logout } from 'features/auth/authSlice';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <div className='hero bg-base-200 min-h-screen'>
@@ -16,7 +22,7 @@ const Dashboard = () => {
 
           <button
             className='btn btn-neutral mt-4'
-            onClick={() => navigate('/')}
+            onClick={() => handleLogout()}
           >
             Logout
           </button>

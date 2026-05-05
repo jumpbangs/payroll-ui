@@ -13,6 +13,10 @@ export default defineConfig(async () => ({
     alias: {
       components: path.resolve(__dirname, './src/components'),
       pages: path.resolve(__dirname, './src/pages'),
+      store: path.resolve(__dirname, './src/store'),
+      utils: path.resolve(__dirname, './src/utils'),
+      types: path.resolve(__dirname, './src/types'),
+      features: path.resolve(__dirname, './src/features'),
     },
   },
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`

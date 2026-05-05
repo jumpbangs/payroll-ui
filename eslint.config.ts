@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import type { Linter } from 'eslint';
+import type { ESLint } from 'eslint';
 import { defineConfig } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
@@ -10,20 +10,8 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
+  // 1. Global ignores — must be alone in its own object
   {
-    files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    plugins: {
-      js,
-      react: pluginReact,
-      'react-hooks': reactHooks as unknown as Linter,
-      'jsx-a11y': jsxA11y,
-      'simple-import-sort': simpleImportSort,
-    },
-    settings: {
-      react: { version: '19' },
-    },
-    extends: ['js/recommended'],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
     ignores: [
       'dist/**',
       'src-tauri/**',
@@ -31,14 +19,39 @@ export default defineConfig([
       'build/**',
       'eslint.config.ts',
     ],
+  },
+
+  // 2. Base JS recommended
+  js.configs.recommended,
+
+  // 3. TypeScript recommended
+  ...tseslint.configs.recommended,
+
+  // 4. Main config
+  {
+    files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    plugins: {
+      react: pluginReact,
+      'react-hooks': reactHooks as unknown as ESLint.Plugin,
+      'jsx-a11y': jsxA11y,
+      'simple-import-sort': simpleImportSort,
+    },
+    settings: {
+      react: { version: '19' },
+    },
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
     rules: {
       ...pluginReact.configs.flat.recommended.rules,
       ...pluginReact.configs.flat['jsx-runtime'].rules,
-      ...pluginReact.configs.recommended.rules,
       ...jsxA11y.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
 
+      semi: ['error', 'always'],
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -70,9 +83,9 @@ export default defineConfig([
         {
           groups: [
             ['^react', '^@?\\w'],
-            [
-              '^(@|components|services|pages|features|common|utils|routes|types)(/.*|$)',
-            ],
+            ['^(store|features)(/.*|$)'],
+            ['^(components|pages)(/.*|$)'],
+            ['^(@|services|common|utils|routes|types)(/.*|$)'],
             ['^\\u0000'],
             ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
             ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
@@ -82,6 +95,7 @@ export default defineConfig([
       ],
     },
   },
-  tseslint.configs.recommended,
+
+  // 5. Prettier last
   prettier,
 ]);
