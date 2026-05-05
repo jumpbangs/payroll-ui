@@ -30,6 +30,6 @@
   },
 
   "include": ["src"],
-  "exclude": ["./eslint.config.ts", "./src-tauri/*"],
+  "exclude": ["eslint.config.js", "./src-tauri/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

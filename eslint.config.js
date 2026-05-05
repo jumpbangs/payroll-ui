@@ -1,5 +1,4 @@
 import js from '@eslint/js';
-import type { ESLint } from 'eslint';
 import { defineConfig } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
@@ -12,13 +11,7 @@ import tseslint from 'typescript-eslint';
 export default defineConfig([
   // 1. Global ignores — must be alone in its own object
   {
-    ignores: [
-      'dist/**',
-      'src-tauri/**',
-      'node_modules/**',
-      'build/**',
-      'eslint.config.ts',
-    ],
+    ignores: ['dist/**', 'src-tauri/**', 'node_modules/**', 'build/**'],
   },
 
   // 2. Base JS recommended
@@ -32,7 +25,7 @@ export default defineConfig([
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
       react: pluginReact,
-      'react-hooks': reactHooks as unknown as ESLint.Plugin,
+      'react-hooks': reactHooks,
       'jsx-a11y': jsxA11y,
       'simple-import-sort': simpleImportSort,
     },

@@ -9,7 +9,7 @@ import './App.css';
 
 const App = () => {
   return (
-    <main className='container'>
+    <main>
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/forget-password' element={<ForgetPassword />} />
