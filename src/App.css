@@ -1,2 +1,115 @@
 @import 'tailwindcss';
-@plugin "daisyui";
+@plugin "daisyui" {
+  name: 'equitas-ledger';
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  /* Base colors — neutral background tones */
+  --color-base-100: #f8fafc; /* Neutral - main bg */
+  --color-base-200: #eef2f6; /* slightly darker for cards/sections */
+  --color-base-300: #dde3ea; /* borders, subtle dividers */
+  --color-base-content: #1a365d; /* text on base — uses primary for strong contrast */
+
+  /* Primary — deep navy */
+  --color-primary: #1a365d;
+  --color-primary-content: #f8fafc;
+
+  /* Secondary — slate blue */
+  --color-secondary: #2d3748;
+  --color-secondary-content: #f8fafc;
+
+  /* Accent — teal (your tertiary) */
+  --color-accent: #0f766e;
+  --color-accent-content: #f8fafc;
+
+  /* Neutral — for muted UI chrome */
+  --color-neutral: #2d3748;
+  --color-neutral-content: #f8fafc;
+
+  /* Semantic colors — chosen to harmonize with the palette */
+  --color-info: #0e7490; /* cyan-ish, sits between primary and accent */
+  --color-info-content: #f8fafc;
+
+  --color-success: #15803d; /* green that doesn't clash with the teal accent */
+  --color-success-content: #f8fafc;
+
+  --color-warning: #b45309; /* amber, strong contrast against the cool palette */
+  --color-warning-content: #f8fafc;
+
+  --color-error: #b91c1c; /* red */
+  --color-error-content: #f8fafc;
+
+  /* Border radius — sober, corporate feel */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+
+  /* Sizing */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* Border width */
+  --border: 1px;
+
+  /* Effects */
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: 'equitas-ledger-midnight';
+  prefersdark: true;
+  color-scheme: dark;
+
+  /* Base — neutral becomes the background */
+  --color-base-100: #0f172a; /* Neutral - main bg (deep navy-black) */
+  --color-base-200: #1a2337; /* slightly lighter for cards */
+  --color-base-300: #2a3349; /* borders, dividers */
+  --color-base-content: #cbd5e0; /* tertiary as body text - soft, readable */
+
+  /* Primary — bright blue, the star of the palette */
+  --color-primary: #3182ce;
+  --color-primary-content: #f8fafc;
+
+  /* Secondary — muted slate */
+  --color-secondary: #718096;
+  --color-secondary-content: #0f172a;
+
+  /* Accent — tertiary as a cool, light highlight */
+  --color-accent: #cbd5e0;
+  --color-accent-content: #0f172a;
+
+  /* Neutral — for muted UI chrome */
+  --color-neutral: #1a2337;
+  --color-neutral-content: #cbd5e0;
+
+  /* Semantic colors — tuned for dark backgrounds */
+  --color-info: #3182ce; /* same as primary - blue means "info" naturally */
+  --color-info-content: #f8fafc;
+
+  --color-success: #22c55e; /* green that pops on dark */
+  --color-success-content: #0f172a;
+
+  --color-warning: #f59e0b; /* amber - high contrast against cool palette */
+  --color-warning-content: #0f172a;
+
+  --color-error: #ef4444; /* red - readable on dark */
+  --color-error-content: #f8fafc;
+
+  /* Border radius */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+
+  /* Sizing */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* Border width */
+  --border: 1px;
+
+  /* Effects */
+  --depth: 1;
+  --noise: 0;
+}

@@ -1,13 +1,11 @@
 import DrawerContainer from 'components/DrawerContainer';
 
-const Dashboard = () => {
+const SettingPage = () => {
   return (
     <DrawerContainer>
-      <div>
-        <h1>Dashboard</h1>
-      </div>
+      <h1>Settings Page</h1>
     </DrawerContainer>
   );
 };
 
-export default Dashboard;
+export default SettingPage;

@@ -87,6 +87,11 @@ const Login = () => {
                   {show ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
               </label>
+              {errors.password && (
+                <div className='text-error text-sm'>
+                  {errors.password.message}
+                </div>
+              )}
 
               <div>
                 <button
