@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import {
+  Landmark,
   LayoutDashboard,
   LogOut,
   PanelLeftOpen,
@@ -17,7 +18,9 @@ interface DashboardProps {
 const DrawerContainer = ({ children }: DashboardProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  const isActive = (path: string) => location.pathname === path;
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -40,6 +43,8 @@ const DrawerContainer = ({ children }: DashboardProps) => {
         </nav>
         {/* Page content here */}
       </div>
+
+      {/* Side Drawer */}
       <div className='drawer-side'>
         <label
           htmlFor='my-drawer-3'
@@ -47,28 +52,57 @@ const DrawerContainer = ({ children }: DashboardProps) => {
           className='drawer-overlay'
         ></label>
         <ul className='menu bg-base-200 min-h-full w-80 p-4'>
+          <div className='flex flex-row items-center p-8 gap-4'>
+            <div className='bg-primary p-2 rounded-lg'>
+              <Landmark className='text-primary-content' />
+            </div>
+            <div className='flex flex-col'>
+              <div className='text-primary text-lg'>Payroll Admin</div>
+              <div className='text-gray-400 text-lg'>HR Management</div>
+            </div>
+          </div>
           {/* Sidebar content here */}
           <li>
             <button onClick={() => navigate('/dashboard')}>
               {/* Home icon */}
-              <LayoutDashboard />
-              <span>Dashboard</span>
+              <LayoutDashboard
+                className={
+                  isActive('/dashboard') ? 'text-primary' : 'text-slate-500'
+                }
+              />
+              <span
+                className={
+                  isActive('/dashboard') ? 'text-primary' : 'text-slate-500'
+                }
+              >
+                Dashboard
+              </span>
             </button>
           </li>
           {/* Sidebar content here */}
           <li>
             <button onClick={() => navigate('/settings')}>
               {/* Settings icon */}
-              <Settings2 />
-              <span>Settings</span>
+              <Settings2
+                className={
+                  isActive('/settings') ? 'text-primary' : 'text-slate-500'
+                }
+              />
+              <span
+                className={
+                  isActive('/settings') ? 'text-primary' : 'text-slate-500'
+                }
+              >
+                Settings
+              </span>
             </button>
           </li>
           {/* Sidebar content here */}
           <li>
             <button onClick={handleLogout}>
               {/* Logout icon */}
-              <LogOut />
-              <span>Logout</span>
+              <LogOut className='text-slate-500' />
+              <span className='text-slate-500'>Logout</span>
             </button>
           </li>
         </ul>

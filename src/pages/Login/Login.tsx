@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Info } from 'lucide-react';
 
 import { login } from 'features/auth/authSlice';
 
@@ -54,9 +54,14 @@ const Login = () => {
         >
           <div className='card-body'>
             <fieldset className='fieldset'>
-              <label className='label' htmlFor='email'>
-                Email
-              </label>
+              <div className='flex flex-row gap-2'>
+                <label className='label' htmlFor='email'>
+                  Email
+                </label>
+                <div className='tooltip' data-tip='test@mail.com'>
+                  <Info size={14} color='var(--color-base-content)' />
+                </div>
+              </div>
               <input
                 id='email'
                 type='email'
@@ -68,9 +73,14 @@ const Login = () => {
                 <div className='text-error text-sm'>{errors.email.message}</div>
               )}
 
-              <label className='label' htmlFor='password'>
-                Password
-              </label>
+              <div className='flex flex-row gap-2'>
+                <label className='label' htmlFor='password'>
+                  Password
+                </label>
+                <div className='tooltip' data-tip='test1234'>
+                  <Info size={14} color='var(--color-base-content)' />
+                </div>
+              </div>
               <label className='input'>
                 <input
                   type={show ? 'text' : 'password'}
